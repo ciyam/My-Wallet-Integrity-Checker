@@ -22,12 +22,13 @@
 
      <target name="applet" depends="compile-applet">
         <jar destfile="${applet.dir}/applet.jar" basedir="${applet.dir}/${classes.dir}" >
+            <manifest>
+                <attribute name="Main-Class" value="Main"/>
+            </manifest>
+            
             <zipgroupfileset file="${applet.dir}/${lib.dir}/jsoup-1.5.2.jar" />
             <zipgroupfileset file="${applet.dir}/${lib.dir}/commons-io-2.1.jar" />
             <fileset file="${applet.dir}/jssecacerts" />
-              <manifest>
-                <attribute name="Main-Class" value="IntegrityChecker"/>
-            </manifest>
         </jar>
     </target>
 </project>
