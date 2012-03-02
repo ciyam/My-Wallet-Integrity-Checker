@@ -1,0 +1,33 @@
+<project name="piuk" basedir="." default="applet">
+    <property name="applet.dir" value="./"/>    
+    <property name="lib.dir" value="lib"/>
+    <property name="src.dir" value="src"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>    
+    <property name="debug" value="true"/>    
+
+    <path id="classpath">
+        <fileset dir="${applet.dir}/${lib.dir}" includes="**/*.jar"/>
+    </path>
+    
+    <target name="compile-applet">
+        <mkdir dir="${applet.dir}/${classes.dir}"/>
+        <javac  source="1.5" target="1.5" includeantruntime="false" srcdir="${applet.dir}/${src.dir}" destdir="${applet.dir}/${classes.dir}" classpathref="classpath"/>
+    </target>
+    
+    <target name="clean">
+            <delete dir="${applet.dir}/${classes.dir}"/>
+            <delete dir="${applet.dir}/${lib.dir}/applet.jar"/>
+    </target>
+
+     <target name="applet" depends="compile-applet">
+        <jar destfile="${applet.dir}/applet.jar" basedir="${applet.dir}/${classes.dir}" >
+            <zipgroupfileset file="${applet.dir}/${lib.dir}/jsoup-1.5.2.jar" />
+            <zipgroupfileset file="${applet.dir}/${lib.dir}/commons-io-2.1.jar" />
+            <fileset file="${applet.dir}/jssecacerts" />
+              <manifest>
+                <attribute name="Main-Class" value="IntegrityChecker"/>
+            </manifest>
+        </jar>
+    </target>
+</project>

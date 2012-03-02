@@ -1,0 +1,14 @@
+Small program which checks for malicious javascript on My Wallet.
+
+Downlaods the main my wallet page:
+   * Checks for any inline javascript in the DOM
+   * Downloads external script sand checks them against github
+   * Prompts to check any non external javascript
+
+Build:
+
+ant applet
+
+Run:
+
+java -jar applet.jar
