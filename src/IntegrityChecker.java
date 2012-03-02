@@ -139,7 +139,7 @@ public class IntegrityChecker extends Applet {
 		verifyURL(URL);
 	}
 
-	public String downloadResource(String urlString) throws IOException {
+	public String downloadResource(final String urlString) throws IOException {
 		final URL url = new URL(urlString);
 
 		return AccessController.doPrivileged(new PrivilegedAction<String>() {
@@ -165,6 +165,8 @@ public class IntegrityChecker extends Applet {
 					}
 
 				} catch (Exception e) {	
+					out.append("Exception caught fetching : " + urlString + " " + e.getLocalizedMessage() + "\n");
+
 					e.printStackTrace();
 				}
 
