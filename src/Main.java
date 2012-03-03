@@ -320,13 +320,11 @@ public class Main extends Applet {
 			List<Element> scriptTags = document.getElementsByTag("script");
 
 			out.append("Found " + scriptTags.size() + " script tags:\n\n");
-
+			
 			for (Element scriptTag : scriptTags) {
 				final String src = scriptTag.attr("src");
 
 				if (src == null || src.length() == 0) {
-					//throw new Exception("Inlined javascript not allowed");
-
 					Frame window = new Frame();
 
 					// Create a modal dialog
@@ -355,7 +353,7 @@ public class Main extends Applet {
 
 					TextArea out = new TextArea();
 
-					out.append("Please Verify this javascript is not malicious: \n\n");
+					out.append("*** Warning possibly malicious inline javascript: \n\n");
 
 					out.append(scriptTag.html());
 
