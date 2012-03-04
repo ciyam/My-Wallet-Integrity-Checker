@@ -47,6 +47,8 @@
 			<string>Some</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>test</string>
 	<key>Website</key>
 	<string>https://www.blockchain.info/wallet</string>
 </dict>
