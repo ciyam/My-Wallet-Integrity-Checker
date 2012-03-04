@@ -48,7 +48,7 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>test</string>
+	<string>https://github.com/zootreeves/My-Wallet-Integrity-Checker/raw/master/mywallet.safariextension/update.plist</string>
 	<key>Website</key>
 	<string>https://www.blockchain.info/wallet</string>
 </dict>

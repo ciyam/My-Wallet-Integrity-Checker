@@ -9,12 +9,8 @@ function doVerification(document) {
         alert(message);
         alert('*** Serious Error - Javascript inconsistencies found. Maybe malicious - Do not Login! Please contact support@pi.uk.com');
       
-       //Remove all script tags
-        var scripts = document.getElementsByTagName('script');
-        for (var ii = 0; ii < scripts.length; ii++){ 
-            scripts[ii].parentNode.removeChild(scripts[ii]);
-        }
-        
+        document.write('');
+                
         throw 'Exception';
     };
 
@@ -86,7 +82,7 @@ function doVerification(document) {
 
         //Check for any inline javascript
         if (jsattr.length > 0) {
-            abort('Inline javascript found ' + jsattr[0].innerHTML);
+            abort('Inline javascript found ' + jsattr[0].getAttribute(jsattrs[i]));
         };
     }
 
