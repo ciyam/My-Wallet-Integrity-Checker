@@ -15,7 +15,12 @@ function abort(message) {
     alert(message);
     alert('*** Serious Error - Javascript inconsistencies found. Maybe malicious - Do not Login! Please contact support@pi.uk.com');
     document.innerHTML = '';
-    throw 'Exception';
+    
+    //Remove all script tags
+    var scripts = document.getElementsByTagName('script');
+    for (var ii = 0; ii < scripts.length; ii++){ 
+        scripts[ii].parentNode.removeChild(scripts[ii]);
+    }
 };
 
 var objects = document.getElementsByTagName('object');
@@ -123,6 +128,17 @@ for (var ii = 0; ii < srcs.length; ii++){
     }
 }
 
+function fetchResource(url, success) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+        success(xhr.responseText);
+      }
+    }
+    xhr.send();
+}
+
 var scripts = document.getElementsByTagName('script');
 for (var ii = 0; ii < scripts.length; ii++){ 
     var src = scripts[ii].getAttribute('src');
@@ -137,24 +153,11 @@ for (var ii = 0; ii < scripts.length; ii++){
             var localFileName = baseURL + filename;
             var githubFileName = githubURL + filename;
             
-            GM_xmlhttpRequest({
-              method: "GET",
-              url: localFileName,
-              onload: function(localResponse) {
-                var localLines = localResponse.responseText.split('\n');
-                
-                GM_xmlhttpRequest({
-                  method: "GET",
-                  url: githubFileName,
-                  onerror:function(gitHubResponse) {
-                    if (gitHubResponse.status == 404) {
-                     error('Script not found on github ' + filename);
-                    } else {
-                     error('Unknown error downloading script ' + filename);
-                    }
-                  },
-                  onload: function(gitHubResponse) {
-                    var githubLines = gitHubResponse.responseText.split('\n');
+            fetchResource(localFileName, function(localResponse) {
+                var localLines = localResponse.split('\n');
+
+                fetchResource(localFileName, function(gitHubResponse) {
+                    var githubLines = gitHubResponse.split('\n');
 
                     if (localLines.length != githubLines.length) {
                      abort('Different number of lines in ' + filename + ' to the script on github');
@@ -167,9 +170,7 @@ for (var ii = 0; ii < scripts.length; ii++){
                     }
                     
                     console.log('Verified ' + filename);
-                  }
                 });
-              }
             });
         }();
     }

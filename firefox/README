@@ -1,0 +1,1 @@
+zip mywallet.xpi install.rdf chrome.manifest content/mywallet.js content/mywallet.xul

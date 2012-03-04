@@ -1,0 +1,2 @@
+content mywallet content/
+overlay chrome://browser/content/browser.xul chrome://mywallet/content/mywallet.xul
