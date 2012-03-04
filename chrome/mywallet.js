@@ -119,7 +119,7 @@ for (var ii = 0; ii < srcs.length; ii++){
     var src = srcs[ii].getAttribute('src');
     
     //Allow jQuery from google
-    if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com')  && !startsWith(src, 'https://www.youtube.com')) {
+    if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com') && !startsWith(src, 'https://www.google.com') && !startsWith(src, 'about:blank') && !startsWith(src, 'https://www.youtube.com')) {
        abort('Unknown src attribute ' + src);
     }
 }
