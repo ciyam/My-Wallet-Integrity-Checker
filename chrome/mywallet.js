@@ -17,6 +17,8 @@ function abort(message) {
 
     //Prevent user logging in
     document.write('');
+    
+    throw 'Exception';
 };
 
 var objects = document.getElementsByTagName('object');
