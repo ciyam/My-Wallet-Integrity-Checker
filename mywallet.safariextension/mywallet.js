@@ -114,7 +114,7 @@ function doVerification(document) {
         var src = srcs[ii].getAttribute('src');
         
         //Allow jQuery from google
-        if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com')) {
+        if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com') && !startsWith(src, 'https://www.youtube.com/')) {
            abort('Unknown src attribute ' + src);
         }
     }
@@ -168,6 +168,6 @@ function doVerification(document) {
     }
 }
 
-if ((window.location.host == "blockchain.info" || window.location.host == "www.blockchain.info") && window.location.pathname.indexOf("/wallet") != -1) {
+if ((window.location.host == "blockchain.info" || window.location.host == "www.blockchain.info") && window.location.pathname.indexOf("/wallet/") != -1) {
    doVerification(document);
 }

@@ -1,14 +1,3 @@
-// ==UserScript==
-// @name           My Wallet Verifier
-// @namespace      blockchain
-// @description    Verify javascript on My wallet pages
-// @include        https://www.blockchain.info/wallet/*
-// @include        https://blockchain.info/wallet/*
-// @include        http://blockchain.info/wallet/*
-// @include        http://www.blockchain.info/wallet/*
-// ==/UserScript==
-
-
 window.addEventListener("load", function(event) {  
     var appcontent = document.getElementById("appcontent");   // browser  
     if(appcontent){  
@@ -34,11 +23,8 @@ function doVerification(document) {
         alert(message);
         alert('*** Serious Error - Javascript inconsistencies found. Maybe malicious - Do not Login! Please contact support@pi.uk.com');
       
-       //Remove all script tags
-        var scripts = document.getElementsByTagName('script');
-        for (var ii = 0; ii < scripts.length; ii++){ 
-            scripts[ii].parentNode.removeChild(scripts[ii]);
-        }
+        //Prevent user logging in
+        document.write('');
         
         throw 'Exception';
     };
@@ -143,7 +129,7 @@ function doVerification(document) {
         var src = srcs[ii].getAttribute('src');
         
         //Allow jQuery from google
-        if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com')) {
+        if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com') && !startsWith(src, 'https://www.youtube.com')) {
            abort('Unknown src attribute ' + src);
         }
     }

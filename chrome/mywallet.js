@@ -14,13 +14,9 @@ var githubURL = "https://raw.github.com/zootreeves/blockchain.info/master/";
 function abort(message) {
     alert(message);
     alert('*** Serious Error - Javascript inconsistencies found. Maybe malicious - Do not Login! Please contact support@pi.uk.com');
-    document.innerHTML = '';
-    
-    //Remove all script tags
-    var scripts = document.getElementsByTagName('script');
-    for (var ii = 0; ii < scripts.length; ii++){ 
-        scripts[ii].parentNode.removeChild(scripts[ii]);
-    }
+
+    //Prevent user logging in
+    document.write('');
 };
 
 var objects = document.getElementsByTagName('object');
@@ -123,7 +119,7 @@ for (var ii = 0; ii < srcs.length; ii++){
     var src = srcs[ii].getAttribute('src');
     
     //Allow jQuery from google
-    if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com')) {
+    if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com')  && !startsWith(src, 'https://www.youtube.com')) {
        abort('Unknown src attribute ' + src);
     }
 }
