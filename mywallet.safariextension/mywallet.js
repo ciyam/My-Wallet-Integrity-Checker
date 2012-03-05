@@ -138,7 +138,7 @@ function doVerification(document) {
         
         if (src == null || src.length == 0 || src == 'about:blank') {
             abort('Inline javascript file found');
-        } else if (startsWith(src, 'safari-extension://') {
+        } else if (startsWith(src, 'safari-extension://')) {
             continue; //Allow user extensions
         } else {
             var func = function() {
