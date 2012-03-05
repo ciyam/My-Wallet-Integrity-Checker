@@ -1,7 +1,7 @@
 window.addEventListener("load", function(event) {  
     var appcontent = document.getElementById("appcontent");   // browser  
     if(appcontent){  
-      document.addEventListener("load", function(aEvent) {
+      document.addEventListener("DOMContentLoaded", function(aEvent) {
         var doc = aEvent.originalTarget; // doc is document that triggered "onload" event  
 
         if (doc == null || doc.location == null)
@@ -184,11 +184,10 @@ function doVerification(document) {
 }
 
 function locationChanged(doc) {
-    var location = doc.location;
-
+    var location = doc.location;q
     
     try {
-        if ((location.host == "blockchain.info" || location.host == "www.blockchain.info") && location.pathname.indexOf("/wallet") != -1) {
+        if ((location.host == "blockchain.info" || location.host == "www.blockchain.info") && location.pathname.indexOf("/wallet/") != -1) {
             doVerification(doc);
         }
     } catch (e) {

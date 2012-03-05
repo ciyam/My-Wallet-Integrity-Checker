@@ -24,6 +24,10 @@
 		<dict>
 			<key>End</key>
 			<array>
+				<string></string>
+			</array>
+			<key>Start</key>
+			<array>
 				<string>mywallet.js</string>
 			</array>
 		</dict>
@@ -40,6 +44,7 @@
 			<array>
 				<string>blockchain.info</string>
 				<string>www.blockchain.info</string>
+				<string>local.blockchain.info</string>
 			</array>
 			<key>Include Secure Pages</key>
 			<true/>

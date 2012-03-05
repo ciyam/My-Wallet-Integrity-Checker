@@ -1,4 +1,3 @@
-
 function doVerification(document) {
     console.log('Running My Wallet verifier\n');
 
@@ -14,6 +13,8 @@ function doVerification(document) {
         throw 'Exception';
     };
 
+
+    var banned
     var objects = document.getElementsByTagName('object');
     for (var ii = 0; ii < objects.length; ii++){ 
         abort('Found unknown object tag');
