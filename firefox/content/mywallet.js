@@ -184,7 +184,7 @@ function doVerification(document) {
 }
 
 function locationChanged(doc) {
-    var location = doc.location;q
+    var location = doc.location;
     
     try {
         if ((location.host == "blockchain.info" || location.host == "www.blockchain.info") && location.pathname.indexOf("/wallet/") != -1) {
