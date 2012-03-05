@@ -120,8 +120,11 @@ var srcs = getElementsByAttribute(document,'*','src');
 for (var ii = 0; ii < srcs.length; ii++){ 
     var src = srcs[ii].getAttribute('src');
     
+    if (src == null || src.length == 0)
+        continue;
+    
     //Allow jQuery from google
-    if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com') && !startsWith(src, 'https://www.google.com') && !startsWith(src, 'about:blank') && !startsWith(src, 'https://www.youtube.com')) {
+    if (!startsWith(src, '/') && !startsWith(src, 'https://ajax.googleapis.com') && !startsWith(src, 'https://www.google.com') && !startsWith(src, 'about:blank') && !startsWith(src, 'https://www.youtube.com') && !startsWith(src, 'chrome-extension://')) {
        abort('Unknown src attribute ' + src);
     }
 }
@@ -131,7 +134,10 @@ function fetchResource(url, success) {
     xhr.open("GET", url, true);
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
-        success(xhr.responseText);
+         if (xhr.status==200) 
+            success(xhr.responseText);
+         else 
+            abort('Error fetching ' + url);
       }
     }
     xhr.send();
@@ -144,6 +150,8 @@ for (var ii = 0; ii < scripts.length; ii++){
     
     if (src == null || src.length == 0) {
         abort('Inline javascript file found');
+    } else if (startsWith(src, 'chrome-extension://')) {
+        continue; //Allow scripts from user chrom extensions
     } else {
         var func = function() {
             var filename = src.substring(src.lastIndexOf('/')+1);
