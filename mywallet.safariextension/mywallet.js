@@ -13,8 +13,6 @@ function doVerification(document) {
         throw 'Exception';
     };
 
-
-    var banned
     var objects = document.getElementsByTagName('object');
     for (var ii = 0; ii < objects.length; ii++){ 
         abort('Found unknown object tag');
@@ -87,7 +85,6 @@ function doVerification(document) {
         };
     }
 
-
     function startsWith(str, needle) {
         return(str.indexOf(needle) == 0);
     };
@@ -125,18 +122,21 @@ function doVerification(document) {
         xhr.open("GET", url, true);
         xhr.onreadystatechange = function() {
           if (xhr.readyState == 4) {
-            success(xhr.responseText);
-          }
+            if (xhr.status==200) 
+                success(xhr.responseText);
+            else 
+                abort('Error fetching ' + url);          }
         }
         xhr.send();
     }
 
     var scripts = document.getElementsByTagName('script');
+    
     for (var ii = 0; ii < scripts.length; ii++){ 
         var src = scripts[ii].getAttribute('src');
 
         
-        if (src == null || src.length == 0) {
+        if (src == null || src.length == 0 || src == 'about:blank') {
             abort('Inline javascript file found');
         } else {
             var func = function() {
