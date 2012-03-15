@@ -221,7 +221,7 @@ public class Main extends Applet {
 
 	public void verifyURL(String urlString) {
 		try {
-
+			
 			TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());  
 			KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());  
 			InputStream keystoreStream = ClassLoader.getSystemResourceAsStream("jssecacerts");  
@@ -298,22 +298,20 @@ public class Main extends Applet {
 				List<Element> jsel = document.getElementsByAttribute(attr);
 
 				for (Element js : jsel) {
-					System.out.println("*** Warning inline javascript found: " + js.attributes());
-					System.out.println("*** This should not be here. Please contact support@pi.uk.com");
+					out.append("*** Warning inline javascript found: " + js.attributes() + "\n");
+					out.append("*** This should not be here. Please contact support@pi.uk.com"+ "\n");
 
 				}
 			}
+			
+			String[] bannedTags = {"object", "embed", "iframe", "frame", "applet"};
 
-			List<Element> embeds = document.getElementsByTag("embed");
-			for (Element embed : embeds) {
-				out.append("*** Error found embed tag which is disallowed");
-				out.append(embed.html());
-			}
-
-			List<Element> objects = document.getElementsByTag("object");
-			for (Element object : objects) {
-				out.append("*** Error found an object tag which is disallowed");
-				out.append(object.html());
+			for (String tag : bannedTags) {
+				List<Element> embeds = document.getElementsByTag(tag);
+				for (Element embed : embeds) {
+					out.append("*** Error found "+tag+" tag which is banned");
+					out.append(embed.html());
+				}
 			}
 
 			//Loop through all the script tags and check the contents again github

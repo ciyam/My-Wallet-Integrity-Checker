@@ -21,14 +21,37 @@ function abort(message) {
     throw 'Exception';
 };
 
-var objects = document.getElementsByTagName('object');
-for (var ii = 0; ii < objects.length; ii++){ 
-    abort('Found unknown object tag');
+var bannedTags = [
+    "form",
+    "iframe",
+    "frame",
+    "object",
+    "applet",
+    "embed"
+];
+
+for (var i in bannedTags) {   
+   var tags = document.getElementsByTagName(bannedTags[i]);
+
+    //Check for any inline javascript
+    if (tags.length > 0) {
+        abort('Banned ' + bannedTags[i] + ' Found');
+    };
 }
 
-var embeds = document.getElementsByTagName('embed');
-for (var ii = 0; ii < embeds.length; ii++){     
-    abort('Found unknown embed tag');
+
+//Check any href's for javascript:
+var hrefs = getElementsByAttribute(document,'*','href');
+for (var ii = 0; ii < hrefs.length; ii++){ 
+    var href = hrefs[ii].getAttribute('href');
+
+    if (href == null || href.length == 0)
+        continue;
+
+    //Check for href="javascript:alert(banned)"
+    if (startsWith(href, 'javascript:') || startsWith(href, '&{')) {
+       abort('Illegal javascript href found ' + href);
+    }
 }
 
 var jsattrs = [
@@ -93,7 +116,6 @@ for (var i in jsattrs) {
     };
 }
 
-
 function startsWith(str, needle) {
     return(str.indexOf(needle) == 0);
 };
@@ -113,7 +135,6 @@ function getElementsByAttribute(oElm, strTagName, strAttributeName){
     }
     return arrReturnElements;
 }
-
 
 //Check for any eternal src attributes
 var srcs = getElementsByAttribute(document,'*','src');
