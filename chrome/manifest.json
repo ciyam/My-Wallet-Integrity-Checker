@@ -7,11 +7,13 @@
     },
     "content_scripts": [
     {
-      "matches": ["https://www.blockchain.info/wallet/*","https://blockchain.info/wallet/*", "http://blockchain.info/wallet/*", "http://www.blockchain.info/wallet/*"],
+      "matches": ["https://www.blockchain.info/wallet/*","https://blockchain.info/wallet/*", "http://blockchain.info/wallet/*", "http://www.blockchain.info/wallet/*", "http://local.blockchain.info/wallet/*", "https://local.blockchain.info/wallet/*"],
       "js": ["mywallet.js"]
     }
     ],
     "permissions": [
+        "http://*/*",
+        "https://*/*",
         "unlimitedStorage",
         "notifications"
     ]

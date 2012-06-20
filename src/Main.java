@@ -1,11 +1,8 @@
 import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.Component;
 import java.awt.Dialog;
-import java.awt.FlowLayout;
 import java.awt.Frame;
-import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
@@ -71,6 +68,7 @@ public class Main extends Applet {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	public static void main(String [] args)
 	{
 		Frame f = new Frame("My Wallet Integrity Verifier");
