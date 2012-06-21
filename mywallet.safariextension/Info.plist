@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Ben Reeves</string>
 	<key>Builder Version</key>
-	<string>7534.53.10</string>
+	<string>7534.57.2</string>
 	<key>CFBundleDisplayName</key>
 	<string>My Wallet Verifier</string>
 	<key>CFBundleIdentifier</key>
@@ -13,11 +13,14 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.7</string>
+	<string>1.9</string>
 	<key>CFBundleVersion</key>
-	<string>1.7</string>
+	<string>1.9</string>
 	<key>Chrome</key>
-	<dict/>
+	<dict>
+		<key>Global Page</key>
+		<string>global.html</string>
+	</dict>
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>
@@ -36,15 +39,10 @@
 	<dict>
 		<key>Website Access</key>
 		<dict>
-			<key>Allowed Domains</key>
-			<array>
-				<string>blockchain.info</string>
-				<string>www.blockchain.info</string>
-			</array>
 			<key>Include Secure Pages</key>
 			<true/>
 			<key>Level</key>
-			<string>Some</string>
+			<string>All</string>
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
