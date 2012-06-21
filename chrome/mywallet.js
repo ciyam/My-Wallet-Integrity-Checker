@@ -1,7 +1,7 @@
 if (typeof MyWallet == "undefined") {
 
     var MyWallet = {
-        baseURL : 'https://blockchain.info/Resources/wallet/',
+        baseURL : '/Resources/wallet/',
         githubURL : 'https://raw.github.com/blockchain/My-Wallet/master/',
         extensionPrefix : 'chrome-extension://',
         registerURIHandler: function() {
@@ -87,9 +87,11 @@ if (typeof MyWallet == "undefined") {
             xhr.open(obj.method, obj.url, true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {
-                    request.data.response = xhr.responseText;
-                    request.data.status = xhr.status;
-                    self.sendExtensionResponse(request);
+                    if (xhr.status > 0) {
+                        request.data.response = xhr.responseText;
+                        request.data.status = xhr.status;
+                        self.sendExtensionResponse(request);
+                    }
                 }
             }
             //Send the proper header information along with the request

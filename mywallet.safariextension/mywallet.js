@@ -3,7 +3,7 @@ if (typeof MyWallet == "undefined") {
     var MyWallet = {
         baseURL : '/Resources/wallet/',
         githubURL : 'https://raw.github.com/blockchain/My-Wallet/master/',
-        extensionPrefix : 'firefox-extension://',
+        extensionPrefix : 'safari-extension://',
         document : window.document,
         myLog : console,
         registerURIHandler: function() {
