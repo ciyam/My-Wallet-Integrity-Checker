@@ -96,7 +96,10 @@ if (typeof MyWallet == "undefined") {
             }
             //Send the proper header information along with the request
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhr.setRequestHeader("Authorization", 'Basic ' + this.Base64.encode(obj.username + ':' + obj.password));
+
+            if (obj.username && obj.password)
+                xhr.setRequestHeader("Authorization", 'Basic ' + this.Base64.encode(obj.username + ':' + obj.password));
+
             xhr.send(obj.data);
         },
         abort : function(message) {
