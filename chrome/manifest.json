@@ -1,7 +1,7 @@
 {
     "name": "My Wallet Verifier",
     "description": "Verify the javascript on My wallet pages.",
-    "version": "1.9.2",
+    "version": "1.9.3",
     "icons": {
         "128": "128.png"
     },
@@ -12,8 +12,6 @@
     }
     ],
     "permissions": [
-        "http://*/*",
-        "https://*/*",
         "unlimitedStorage",
         "notifications"
     ]
